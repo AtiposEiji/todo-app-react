@@ -1,6 +1,5 @@
 
 export const GetToDoList = () => {
-
     // Note: the empty deps array [] means
     // this useEffect will run once
     // similar to componentDidMount()
@@ -13,3 +12,13 @@ export const GetToDoList = () => {
             }
         )
 }
+
+    //     const fetchTodos = async () => {
+    //        const url = "https://jsonplaceholder.typicode.com/todos";
+    //        const response = await fetch(url);
+    //        const data = await response.json();
+    //        setTodos(data);
+    //        for (let i = 0; i < data.length; i++) {
+    //            console.log(data[i].title);
+    //        }
+    //} 

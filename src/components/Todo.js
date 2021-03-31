@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import TodoForm from "./TodoForm";
-import TodoList from './TodoList';
 import { RiCloseCircleLine } from "react-icons/ri";
 import { TiEdit } from "react-icons/ti";
 import { SiVerizon } from "react-icons/si";
@@ -23,13 +22,14 @@ function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
     if (edit.id) {
         return <TodoForm edit={edit} onSubmit={submitUpdate} />;
     }
+    console.log(todos)
 
     return todos.map((todo, index) => (
         <div
-            className={todo.isComplete ? "todo-row complete" : "todo-row"}
+            className={todo.completed ? "todo-row complete" : "todo-row"}
             key={index}>
             <div key={todo.id} >
-                {todo.text}
+                {todo.title}
             </div>
             <div className="icons">
                 <SiVerizon onClick={() => completeTodo(todo.id)} />
@@ -37,7 +37,7 @@ function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
                     onClick={() => removeTodo(todo.id)}
                     className="delete-icon" />
                 <TiEdit
-                    onClick={() => setEdit({ id: todo.id, value: todo.text })}
+                    onClick={() => setEdit({ id: todo.id, value: todo.title })}
                     className="edit-icon" />
             </div>
         </div>

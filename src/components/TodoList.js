@@ -7,26 +7,13 @@ function TodoList() {
     
     const [todos, setTodos] = useState([]);
 
-    //useEffect(() => {
-    //    const todoList = GetToDoList();
-    //    if (todoList) {
-    //        todoList.then((data) => setTodos(data));
-    //    }
-    //}, [])
-
     useEffect(() => {
-        fetchTodos();
-    }, []);
-
-    const fetchTodos = async () => {
-        const url = "https://jsonplaceholder.typicode.com/todos";
-        const response = await fetch(url);
-        const data = await response.json();
-        setTodos(data);
-        for (let i = 0; i < data.length; i++) {
-            console.log(data[i].title);
+        const todoList = GetToDoList();
+        if (todoList) {
+            todoList.then((data) => setTodos(data));
         }
-    }
+    }, [])
+
 
     const addTodoHandler = (todo) => {
         if (!todo.text || /^\s*$/.test(todo.text)) {
@@ -41,7 +28,7 @@ function TodoList() {
     const completeTodo = (id) => {
         let updateTodos = todos.map(todo => {
             if (todo.id === id) {
-                todo.isComplete = !todo.isComplete
+                todo.completed = !todo.completed
             }
             return todo
         })
