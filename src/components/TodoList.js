@@ -1,9 +1,32 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import TodoForm from "./TodoForm";
 import ToDo from "./Todo";
+import { GetToDoList } from "../services/TodoService";
 
 function TodoList() {
+    
     const [todos, setTodos] = useState([]);
+
+    //useEffect(() => {
+    //    const todoList = GetToDoList();
+    //    if (todoList) {
+    //        todoList.then((data) => setTodos(data));
+    //    }
+    //}, [])
+
+    useEffect(() => {
+        fetchTodos();
+    }, []);
+
+    const fetchTodos = async () => {
+        const url = "https://jsonplaceholder.typicode.com/todos";
+        const response = await fetch(url);
+        const data = await response.json();
+        setTodos(data);
+        for (let i = 0; i < data.length; i++) {
+            console.log(data[i].title);
+        }
+    }
 
     const addTodoHandler = (todo) => {
         if (!todo.text || /^\s*$/.test(todo.text)) {
