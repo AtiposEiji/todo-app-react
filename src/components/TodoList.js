@@ -1,7 +1,7 @@
 import React, { useState , useEffect } from "react";
 import TodoForm from "./TodoForm";
 import ToDo from "./Todo";
-import { GetToDoList } from "../services/TodoService";
+import { GetToDoList, PostToDoList } from "../services/TodoService";
 
 function TodoList() {
     
@@ -12,6 +12,7 @@ function TodoList() {
         if (todoList) {
             todoList.then((data) => setTodos(data));
         }
+        PostToDoList();
     }, [])
 
 
