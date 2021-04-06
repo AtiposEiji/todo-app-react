@@ -1,7 +1,7 @@
 import React, { useState , useEffect } from "react";
 import TodoForm from "./TodoForm";
 import ToDo from "./Todo";
-import { GetToDoList, PostToDoList } from "../services/TodoService";
+import { GetToDoList, PostToDoList, DeleteToDoList } from "../services/TodoService";
 
 function TodoList() {
     
@@ -12,18 +12,17 @@ function TodoList() {
         if (todoList) {
             todoList.then((data) => setTodos(data));
         }
-        PostToDoList();
     }, [])
 
 
     const addTodoHandler = (todo) => {
         if (!todo.text || /^\s*$/.test(todo.text)) {
-            return
+            return;
         }
 
         const newTodos = [todo, ...todos];
+        PostToDoList(todo);
         setTodos(newTodos);
-        console.log(...todos);
     };
 
     const completeTodo = (id) => {
@@ -38,6 +37,7 @@ function TodoList() {
 
     const removeTodo = (id) => {
         const removeArr = [...todos].filter(todo => todo.id !== id);
+        DeleteToDoList(removeArr);
         setTodos(removeArr);
     }
 

@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src"
+    "\\src",
+    "\\src\\components",
+    "\\src\\services"
   ],
-  "SelectedNode": "\\src\\App.js",
+  "SelectedNode": "\\src\\services\\TodoService.js",
   "PreviewInSolutionExplorer": false
 }

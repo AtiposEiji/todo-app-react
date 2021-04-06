@@ -23,7 +23,7 @@ export const GetToDoList = () => {
 //        }
 //} 
 
-export const PostToDoList = () => {
+export const PostToDoList = (todo) => {
     return fetch("https://jsonplaceholder.typicode.com/todos", {
         method: "post",
         headers: {
@@ -32,9 +32,9 @@ export const PostToDoList = () => {
         },
         body: JSON.stringify({
             userId: "1",
-            id: "201",
-            title: "delectus aut autem",
-            completed: "false"
+            id: todo.id,
+            title: todo.title,
+            completed: todo.completed
         })
     })
         .then(function (result) {
@@ -44,4 +44,8 @@ export const PostToDoList = () => {
                 console.log(error);
             }
         )
+}
+
+export const DeleteToDoList = (todo) => {
+    fetch("https://jsonplaceholder.typicode.com/todos/" + todo.id, { method: "DELETE" });
 }
