@@ -1,65 +1,54 @@
-import React, { useState , useEffect } from "react";
-import TodoForm from "./TodoForm";
-import ToDo from "./Todo";
-import { GetToDoList, PostToDoList, DeleteToDoList } from "../services/TodoService";
-
+"use strict";
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = require("react");
+var TodoForm_1 = require("./TodoForm");
+var Todo_1 = require("./Todo");
+var TodoService_1 = require("../services/TodoService");
 function TodoList() {
-    
-    const [todos, setTodos] = useState([]);
-
-    useEffect(() => {
-        const todoList = GetToDoList();
+    var _a = react_1.useState([]), todos = _a[0], setTodos = _a[1];
+    react_1.useEffect(function () {
+        var todoList = TodoService_1.GetToDoList();
         if (todoList) {
-            todoList.then((data) => setTodos(data));
+            todoList.then(function (data) { return setTodos(data); });
         }
-    }, [])
-
-
-    const addTodoHandler = (todo) => {
+    }, []);
+    var addTodoHandler = function (todo) {
         if (!todo.text || /^\s*$/.test(todo.text)) {
             return;
         }
-
-        const newTodos = [todo, ...todos];
-        PostToDoList(todo);
+        var newTodos = __spreadArrays([todo], todos);
+        TodoService_1.PostToDoList(todo);
         setTodos(newTodos);
     };
-
-    const completeTodo = (id) => {
-        let updateTodos = todos.map(todo => {
+    var completeTodo = function (id) {
+        var updateTodos = todos.map(function (todo) {
             if (todo.id === id) {
-                todo.completed = !todo.completed
+                todo.completed = !todo.completed;
             }
-            return todo
-        })
+            return todo;
+        });
         setTodos(updateTodos);
-    }
-
-    const removeTodo = (id) => {
-        const removeArr = [...todos].filter(todo => todo.id !== id);
-        DeleteToDoList(removeArr);
-        setTodos(removeArr);
-    }
-
-    const updateTodo = (todoId, newValue) => {
-        if (!newValue.text || /^\s*$/.test(newValue.text)) {
-            return
-        }
-
-        setTodos(prev => prev.map(item => (item.id === todoId ? newValue : item)));
     };
-
-    return (
-        <div>
-            <h1>Insert your ToDo</h1>
-            <TodoForm onSubmit={addTodoHandler}></TodoForm>
-            <ToDo
-                todos={todos}
-                completeTodo={completeTodo}
-                removeTodo={removeTodo} 
-                updateTodo={updateTodo}/>
-        </div>
-    )
+    var removeTodo = function (id) {
+        TodoService_1.DeleteToDoList(id);
+    };
+    var updateTodo = function (todoId, newValue) {
+        if (!newValue.text || /^\s*$/.test(newValue.text)) {
+            return;
+        }
+        setTodos(function (prev) { return prev.map(function (item) { return (item.id === todoId ? newValue : item); }); });
+    };
+    return (react_1.default.createElement("div", null,
+        react_1.default.createElement("h1", null, "Insert your ToDo"),
+        react_1.default.createElement(TodoForm_1.default, { onSubmit: addTodoHandler }),
+        react_1.default.createElement(Todo_1.default, { todos: todos, completeTodo: completeTodo, removeTodo: removeTodo, updateTodo: updateTodo })));
 }
-
-export default TodoList;
+exports.default = TodoList;
+//# sourceMappingURL=TodoList.js.map

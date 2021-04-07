@@ -1,24 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react';
+import * as react from 'react';
 import { FaCloudDownloadAlt } from "react-icons/fa";
 
-function TodoForm(props) {
-    const [input, setInput] = useState("");
+function TodoForm(props: any) {
+    const [input, setInput] = react.useState("");
 
-    const inputRef = useRef(null);
-    useEffect(() => {
-        inputRef.current.focus();
-    });
-
-    const changeHandler = (e) => {
+    const changeHandler = (e: any) => {
         setInput(e.target.value);
     };
 
-    const submitHandler = (e) => {
+    const submitHandler = (e: any) => {
         e.preventDefault();
 
         props.onSubmit({
             id: Date.now(),
-            text: input
+            text: input,
+            completed: "false"
         });
 
         setInput("")
@@ -33,7 +29,7 @@ function TodoForm(props) {
                 value={input}
                 name="text"
                 onChange={changeHandler}
-                ref={inputRef} />
+                />
             <button className="todo-button">Add ToDo</button>
             
         </form>
