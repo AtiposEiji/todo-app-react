@@ -28,27 +28,28 @@ function TodoList() {
         }
     };
 
-    //const completeTodo = (id: number) => {
-    //    let updateTodos = todos.map(todo => {
-    //        if (todo.id === id) {
-    //            todo.completed = !todo.completed
-    //        }
-    //        return todo
-    //    })
-    //    setTodos(updateTodos);
-    //}
+    const completeTodo = (id: number) => {
+        let updateTodos: any;
+        updateTodos = todos.map((todo: any) => {
+            if (todo.id === id) {
+                todo.completed = !todo.completed
+            }
+            return todo
+        })
+        setTodos(updateTodos);
+    }
 
     const removeTodo = (id: number) => {
         DeleteToDoList(id);
     }
 
-    //const updateTodo = (todoId, newValue) => {
-    //    if (!newValue.text || /^\s*$/.test(newValue.text)) {
-    //        return
-    //    }
+    const updateTodo = (todoId: any, newValue: { text: string; }) => {
+        if (!newValue.text || /^\s*$/.test(newValue.text)) {
+            return
+        }
 
-    //    setTodos(prev => prev.map(item => (item.id === todoId ? newValue : item)));
-    //};
+        setTodos((prev: any) => prev.map((item: any) => (item.id === todoId ? newValue : item)));
+    };
 
     return (
         <div>
@@ -57,8 +58,8 @@ function TodoList() {
             <ToDo
                 todos={todos}
                 removeTodo={removeTodo} 
-                /*completeTodo={completeTodo}*/
-                /*updateTodo={updateTodo}*//>
+                completeTodo={completeTodo}
+                updateTodo={updateTodo}/>
         </div>
     )
 }

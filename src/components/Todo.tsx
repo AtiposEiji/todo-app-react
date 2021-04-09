@@ -33,13 +33,13 @@ function Todo({ todos, completeTodo, removeTodo, updateTodo }: any) {
                 {todo.title}
             </div>
             <div className="icons">
-                {/*<SiVerizon onClick={() => completeTodo(todo.id)} />*/}
+                <SiVerizon onClick={() => completeTodo(todo.id)} />
                 <RiCloseCircleLine
                     onClick={() => removeTodo(todo.id)}
                     className="delete-icon" />
-                {/*<TiEdit*/}
-                {/*    onClick={() => setEdit({ id: todo.id, value: todo.title })}*/}
-                {/*    className="edit-icon" />*/}
+                <TiEdit
+                    onClick={() => setEdit({ id: todo.id, value: todo.title })}
+                    className="edit-icon" />
             </div>
         </div>
     ));

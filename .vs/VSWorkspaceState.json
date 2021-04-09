@@ -1,10 +1,12 @@
 {
   "ExpandedNodes": [
     "",
+    "\\public",
     "\\src",
     "\\src\\components",
+    "\\src\\model",
     "\\src\\services"
   ],
-  "SelectedNode": "\\src\\services\\TodoService.js",
+  "SelectedNode": "\\src\\components\\TodoList.tsx",
   "PreviewInSolutionExplorer": false
 }
